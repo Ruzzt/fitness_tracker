@@ -3,6 +3,7 @@ package daysteps
 import (
 	"errors"
 	"fmt"
+	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -33,9 +34,10 @@ func parsePackage(data string) (int, time.Duration, error) {
 	if err != nil {
 		return 0, 0, errors.New("Invalid duration format")
 	}
-	if duration == 0 {
+	if duration <= 0 {
 		return 0, 0, errors.New("Duration must be greater than zero")
 	}
+	log.Println("некорректный формат")
 
 	return steps, duration, nil
 }

@@ -28,6 +28,10 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 		return 0, "", 0, errors.New("Invalid steps count")
 	}
 
+	if steps <= 0 {
+		return 0, "", 0, errors.New("Steps must be greater than zero")
+	}
+
 	activity := strings.TrimSpace(datas[1])
 
 	duration, err := time.ParseDuration(datas[2])
