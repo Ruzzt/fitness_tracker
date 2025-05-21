@@ -63,7 +63,7 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 	// TODO: реализовать функцию
 	steps, activity, duration, err := parseTraining(data)
 	if err != nil {
-		return "", errors.New("Invalid steps count")
+		return "", err
 	}
 
 	dist := distance(steps, height)

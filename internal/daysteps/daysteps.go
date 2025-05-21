@@ -46,7 +46,7 @@ func DayActionInfo(data string, weight, height float64) string {
 	// TODO: реализовать функцию
 	steps, duration, err := parsePackage(data)
 	if err != nil {
-		fmt.Errorf("Errot: %w", err)
+		log.Printf("Error parsing package: %v\n", err)
 		return ""
 	}
 
