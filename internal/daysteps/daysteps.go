@@ -23,33 +23,22 @@ func parsePackage(data string) (int, time.Duration, error) {
 	if len(times) != 2 {
 		return 0, 0, errors.New("Insufficient data")
 	}
-	stepsStr := strings.TrimSpace(times[0])
-	if stepsStr == "" {
-		return 0, 0, errors.New("steps value is empty")
-	}
 
-	steps, err := strconv.Atoi(stepsStr)
+	steps, err := strconv.Atoi(times[0])
 	if err != nil {
-		return 0, 0, errors.New("Error converting the number of steps")
+		return 0, 0, fmt.Errorf("conversion error: %w", err)
 	}
 	if steps <= 0 {
 		return 0, 0, errors.New("The number of steps must be greater than zero")
 	}
 
-	durationStr := strings.TrimSpace(times[1])
-	if durationStr == "" {
-		return 0, 0, errors.New("duration value is empty")
-	}
-
-	duration, err := time.ParseDuration(durationStr)
+	duration, err := time.ParseDuration(times[1])
 	if err != nil {
 		return 0, 0, errors.New("Invalid duration format")
 	}
 	if duration <= 0 {
 		return 0, 0, errors.New("Duration must be greater than zero")
 	}
-
-	log.Println("некорректный формат")
 
 	return steps, duration, nil
 }
