@@ -26,27 +26,29 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 	if err != nil {
 		return 0, "", 0, errors.New("Invalid steps count")
 	}
-
 	if steps <= 0 {
 		return 0, "", 0, errors.New("Steps must be greater than zero")
 	}
-
 	activity := strings.TrimSpace(datas[1])
-
 	duration, err := time.ParseDuration(datas[2])
 	if err != nil {
 		return 0, "", 0, errors.New("invalid duration format")
 	}
-
+	if duration <= 0 {
+		return 0, "", 0, errors.New("Duration must be greater than zero")
+	}
 	return steps, activity, duration, nil
 }
 
 func distance(steps int, height float64) float64 {
+	// TODO: реализовать функцию
 	lenSteps := stepLengthCoefficient * height
 	return float64(steps) * lenSteps / mInKm
+
 }
 
 func meanSpeed(steps int, height float64, duration time.Duration) float64 {
+	// TODO: реализовать функцию
 	if duration <= 0 {
 		return 0
 	}
@@ -79,7 +81,7 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 			return "", err
 		}
 	default:
-		return "", errors.New("unknown type of training: " + activity)
+		return "", errors.New("неизвестный тип тренировки: " + activity)
 	}
 
 	result := fmt.Sprintf(
@@ -91,6 +93,7 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 }
 
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
+	// TODO: реализовать функцию
 	if steps <= 0 {
 		return 0, errors.New("the number of steps is less than zero")
 	}
@@ -108,9 +111,11 @@ func RunningSpentCalories(steps int, weight, height float64, duration time.Durat
 	calories := weight * average * munites
 
 	return calories / minInH, nil
+
 }
 
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
+	// TODO: реализовать функцию
 	if steps <= 0 {
 		return 0, errors.New("the number of steps is less than zero")
 	}
