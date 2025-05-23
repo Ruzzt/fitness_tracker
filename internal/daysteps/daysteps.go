@@ -3,12 +3,11 @@ package daysteps
 import (
 	"errors"
 	"fmt"
-	"log"
 	"strconv"
 	"strings"
 	"time"
 
-	"github.com/Yandex-Practicum/tracker/internal/spentcalories"
+	"github.com/Ruzzt/fitness_tracker/internal/spentcalories"
 )
 
 const (
@@ -46,12 +45,11 @@ func parsePackage(data string) (int, time.Duration, error) {
 func DayActionInfo(data string, weight, height float64) string {
 	steps, duration, err := parsePackage(data)
 	if err != nil {
-		log.Printf("Error parsing package: %v\n", err)
-		return ""
+		return fmt.Sprintf("Ошибка парсинга: %v", err)
 	}
 
 	if steps <= 0 {
-		return ""
+		return "Количество шагов должно быть больше нуля"
 	}
 
 	distantion := stepLength * float64(steps)
@@ -59,8 +57,7 @@ func DayActionInfo(data string, weight, height float64) string {
 
 	calories, err := spentcalories.WalkingSpentCalories(steps, weight, height, duration)
 	if err != nil {
-		fmt.Println("Ошибка при расчёте калорий:", err)
-		return ""
+		return fmt.Sprintf("Ошибка при расчёте калорий: %v", err)
 	}
 
 	return fmt.Sprintf(
