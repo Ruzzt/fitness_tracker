@@ -18,7 +18,6 @@ const (
 )
 
 func parseTraining(data string) (int, string, time.Duration, error) {
-	// TODO: реализовать функцию
 	datas := strings.Split(data, ",")
 	if len(datas) != 3 {
 		return 0, "", 0, errors.New("The length is less than 3")
@@ -43,14 +42,11 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 }
 
 func distance(steps int, height float64) float64 {
-	// TODO: реализовать функцию
 	lenSteps := stepLengthCoefficient * height
 	return float64(steps) * lenSteps / mInKm
-
 }
 
 func meanSpeed(steps int, height float64, duration time.Duration) float64 {
-	// TODO: реализовать функцию
 	if duration <= 0 {
 		return 0
 	}
@@ -60,7 +56,6 @@ func meanSpeed(steps int, height float64, duration time.Duration) float64 {
 }
 
 func TrainingInfo(data string, weight, height float64) (string, error) {
-	// TODO: реализовать функцию
 	steps, activity, duration, err := parseTraining(data)
 	if err != nil {
 		return "", err
@@ -93,11 +88,9 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 	)
 
 	return result, nil
-
 }
 
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
-	// TODO: реализовать функцию
 	if steps <= 0 {
 		return 0, errors.New("the number of steps is less than zero")
 	}
@@ -115,11 +108,9 @@ func RunningSpentCalories(steps int, weight, height float64, duration time.Durat
 	calories := weight * average * munites
 
 	return calories / minInH, nil
-
 }
 
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
-	// TODO: реализовать функцию
 	if steps <= 0 {
 		return 0, errors.New("the number of steps is less than zero")
 	}
